@@ -14,11 +14,11 @@ describe('TimelineWrapper initialization - test 1', () => {
             zoom: 0,
             partitionCount: 5,
             partitions: [
-                { year: 1422 },
-                { year: 1423 },
-                { year: 1424 },
-                { year: 1425 },
-                { year: 1426 }
+                { year: 1422, isAnniversary: false, isSelected: false },
+                { year: 1423, isAnniversary: false, isSelected: false },
+                { year: 1424, isAnniversary: false, isSelected: true },
+                { year: 1425, isAnniversary: true, isSelected: false },
+                { year: 1426, isAnniversary: false, isSelected: false }
             ]
         };
 
@@ -41,15 +41,15 @@ describe('TimelineWrapper initialization - test 2', () => {
             zoom: 1,
             partitionCount: 9,
             partitions: [
-                { year: 1400 },
-                { year: 1405 },
-                { year: 1410 },
-                { year: 1415 },
-                { year: 1420 },
-                { year: 1425 },
-                { year: 1430 },
-                { year: 1435 },
-                { year: 1440 }
+                { year: 1400, isAnniversary: true, isSelected: false },
+                { year: 1405, isAnniversary: false, isSelected: false },
+                { year: 1410, isAnniversary: false, isSelected: false },
+                { year: 1415, isAnniversary: false, isSelected: false },
+                { year: 1420, isAnniversary: false, isSelected: true },
+                { year: 1425, isAnniversary: true, isSelected: false },
+                { year: 1430, isAnniversary: false, isSelected: false },
+                { year: 1435, isAnniversary: false, isSelected: false },
+                { year: 1440, isAnniversary: false, isSelected: false }
             ]
         };
 
@@ -72,37 +72,37 @@ describe('TimelineWrapper initialization - test 3', () => {
             zoom: 1,
             partitionCount: 30,
             partitions: [
-                { year: 1600 },
-                { year: 1605 },
-                { year: 1610 },
-                { year: 1615 },
-                { year: 1620 },
-                { year: 1625 },
-                { year: 1630 },
-                { year: 1635 },
-                { year: 1640 },
-                { year: 1645 },
-                { year: 1650 },
-                { year: 1655 },
-                { year: 1660 },
-                { year: 1665 },
-                { year: 1670 },
-                { year: 1675 },
-                { year: 1680 },
-                { year: 1685 },
-                { year: 1690 },
-                { year: 1695 },
-                { year: 1700 },
-                { year: 1705 },
-                { year: 1710 },
-                { year: 1715 },
-                { year: 1720 },
-                { year: 1725 },
-                { year: 1730 },
-                { year: 1735 },
-                { year: 1740 },
-                { year: 1745 },
-                { year: 1750 },
+                { year: 1600, isAnniversary: true, isSelected: false },
+                { year: 1605, isAnniversary: false, isSelected: false },
+                { year: 1610, isAnniversary: false, isSelected: false },
+                { year: 1615, isAnniversary: false, isSelected: false },
+                { year: 1620, isAnniversary: false, isSelected: false },
+                { year: 1625, isAnniversary: true, isSelected: false },
+                { year: 1630, isAnniversary: false, isSelected: false },
+                { year: 1635, isAnniversary: false, isSelected: false },
+                { year: 1640, isAnniversary: false, isSelected: false },
+                { year: 1645, isAnniversary: false, isSelected: false },
+                { year: 1650, isAnniversary: true, isSelected: false },
+                { year: 1655, isAnniversary: false, isSelected: false },
+                { year: 1660, isAnniversary: false, isSelected: false },
+                { year: 1665, isAnniversary: false, isSelected: false },
+                { year: 1670, isAnniversary: false, isSelected: false },
+                { year: 1675, isAnniversary: true, isSelected: true },
+                { year: 1680, isAnniversary: false, isSelected: false },
+                { year: 1685, isAnniversary: false, isSelected: false },
+                { year: 1690, isAnniversary: false, isSelected: false },
+                { year: 1695, isAnniversary: false, isSelected: false },
+                { year: 1700, isAnniversary: true, isSelected: false },
+                { year: 1705, isAnniversary: false, isSelected: false },
+                { year: 1710, isAnniversary: false, isSelected: false },
+                { year: 1715, isAnniversary: false, isSelected: false },
+                { year: 1720, isAnniversary: false, isSelected: false },
+                { year: 1725, isAnniversary: true, isSelected: false },
+                { year: 1730, isAnniversary: false, isSelected: false },
+                { year: 1735, isAnniversary: false, isSelected: false },
+                { year: 1740, isAnniversary: false, isSelected: false },
+                { year: 1745, isAnniversary: false, isSelected: false },
+                { year: 1750, isAnniversary: true, isSelected: false }
             ]
         };
 
@@ -122,15 +122,15 @@ describe('TimelineWrapper zoom out - test 1', () => {
             zoom: 1,
             partitionCount: 9,
             partitions: [
-                { year: 1400 },
-                { year: 1405 },
-                { year: 1410 },
-                { year: 1415 },
-                { year: 1420 },
-                { year: 1425 },
-                { year: 1430 },
-                { year: 1435 },
-                { year: 1440 }
+                { year: 1400, isAnniversary: true, isSelected: false },
+                { year: 1405, isAnniversary: false, isSelected: false },
+                { year: 1410, isAnniversary: false, isSelected: false },
+                { year: 1415, isAnniversary: false, isSelected: false },
+                { year: 1420, isAnniversary: false, isSelected: true },
+                { year: 1425, isAnniversary: true, isSelected: false },
+                { year: 1430, isAnniversary: false, isSelected: false },
+                { year: 1435, isAnniversary: false, isSelected: false },
+                { year: 1440, isAnniversary: false, isSelected: false }
             ]
         };
         deepFreeze(stateBefore);
@@ -140,15 +140,15 @@ describe('TimelineWrapper zoom out - test 1', () => {
             zoom: 2,
             partitionCount: 9,
             partitions: [
-                { year: 1380 },
-                { year: 1390 },
-                { year: 1400 },
-                { year: 1410 },
-                { year: 1420 },
-                { year: 1430 },
-                { year: 1440 },
-                { year: 1450 },
-                { year: 1460 }
+                { year: 1380, isAnniversary: false, isSelected: false },
+                { year: 1390, isAnniversary: false, isSelected: false },
+                { year: 1400, isAnniversary: true, isSelected: false },
+                { year: 1410, isAnniversary: false, isSelected: false },
+                { year: 1420, isAnniversary: false, isSelected: true },
+                { year: 1430, isAnniversary: false, isSelected: false },
+                { year: 1440, isAnniversary: false, isSelected: false },
+                { year: 1450, isAnniversary: true, isSelected: false },
+                { year: 1460, isAnniversary: false, isSelected: false }
             ]
         };
 
@@ -165,9 +165,9 @@ describe('TimelineWrapper zoom in - test 1', () => {
             zoom: 1,
             partitionCount: 3,
             partitions: [
-                { year: 1415 },
-                { year: 1420 },
-                { year: 1425 }
+                { year: 1415, isAnniversary: false, isSelected: false },
+                { year: 1420, isAnniversary: false, isSelected: true },
+                { year: 1425, isAnniversary: true, isSelected: false }
             ]
         };
         deepFreeze(stateBefore);
@@ -177,9 +177,9 @@ describe('TimelineWrapper zoom in - test 1', () => {
             zoom: 0,
             partitionCount: 3,
             partitions: [
-                { year: 1423 },
-                { year: 1424 },
-                { year: 1425 }
+                { year: 1423, isAnniversary: false, isSelected: false },
+                { year: 1424, isAnniversary: false, isSelected: true },
+                { year: 1425, isAnniversary: true, isSelected: false }
             ]
         };
 
@@ -196,9 +196,9 @@ describe('TimelineWrapper zoom in - test 2', () => {
             zoom: 0,
             partitionCount: 3,
             partitions: [
-                { year: 1423 },
-                { year: 1424 },
-                { year: 1425 }
+                { year: 1423, isAnniversary: false, isSelected: false },
+                { year: 1424, isAnniversary: false, isSelected: true },
+                { year: 1425, isAnniversary: true, isSelected: false }
             ]
         };
         deepFreeze(stateBefore);
@@ -208,9 +208,9 @@ describe('TimelineWrapper zoom in - test 2', () => {
             zoom: 0,
             partitionCount: 3,
             partitions: [
-                { year: 1423 },
-                { year: 1424 },
-                { year: 1425 }
+                { year: 1423, isAnniversary: false, isSelected: false },
+                { year: 1424, isAnniversary: false, isSelected: true },
+                { year: 1425, isAnniversary: true, isSelected: false }
             ]
         };
 
@@ -227,11 +227,11 @@ describe('TimelineWrapper change era - test 1', () => {
             zoom: 3,
             partitionCount: 5,
             partitions: [
-                { year: 1380 },
-                { year: 1400 },
-                { year: 1420 },
-                { year: 1440 },
-                { year: 1460 }
+                { year: 1380, isAnniversary: false, isSelected: false },
+                { year: 1400, isAnniversary: true, isSelected: false },
+                { year: 1420, isAnniversary: false, isSelected: true },
+                { year: 1440, isAnniversary: false, isSelected: false },
+                { year: 1460, isAnniversary: false, isSelected: false }
             ]
         };
         deepFreeze(stateBefore);
@@ -241,11 +241,11 @@ describe('TimelineWrapper change era - test 1', () => {
             zoom: 3,
             partitionCount: 5,
             partitions: [
-                { year: 1500 },
-                { year: 1520 },
-                { year: 1540 },
-                { year: 1560 },
-                { year: 1580 }
+                { year: 1500, isAnniversary: true, isSelected: false },
+                { year: 1520, isAnniversary: false, isSelected: false },
+                { year: 1540, isAnniversary: false, isSelected: true },
+                { year: 1560, isAnniversary: false, isSelected: false },
+                { year: 1580, isAnniversary: false, isSelected: false }
             ]
         };
 
@@ -263,11 +263,11 @@ describe('TimelineWrapper next range - test 1', () => {
             zoom: 3,
             partitionCount: 5,
             partitions: [
-                { year: 1380 },
-                { year: 1400 },
-                { year: 1420 },
-                { year: 1440 },
-                { year: 1460 }
+                { year: 1380, isAnniversary: false, isSelected: false },
+                { year: 1400, isAnniversary: true, isSelected: false },
+                { year: 1420, isAnniversary: false, isSelected: true },
+                { year: 1440, isAnniversary: false, isSelected: false },
+                { year: 1460, isAnniversary: false, isSelected: false }
             ]
         };
         deepFreeze(stateBefore);
@@ -277,11 +277,11 @@ describe('TimelineWrapper next range - test 1', () => {
             zoom: 3,
             partitionCount: 5,
             partitions: [
-                { year: 1400 },
-                { year: 1420 },
-                { year: 1440 },
-                { year: 1460 },
-                { year: 1480 }
+                { year: 1400, isAnniversary: true, isSelected: false },
+                { year: 1420, isAnniversary: false, isSelected: false },
+                { year: 1440, isAnniversary: false, isSelected: true },
+                { year: 1460, isAnniversary: false, isSelected: false },
+                { year: 1480, isAnniversary: false, isSelected: false }
             ]
         };
 
@@ -298,11 +298,11 @@ describe('TimelineWrapper prev range - test 1', () => {
             zoom: 3,
             partitionCount: 5,
             partitions: [
-                { year: 1400 },
-                { year: 1420 },
-                { year: 1440 },
-                { year: 1460 },
-                { year: 1480 }
+                { year: 1400, isAnniversary: true, isSelected: false },
+                { year: 1420, isAnniversary: false, isSelected: false },
+                { year: 1440, isAnniversary: false, isSelected: true },
+                { year: 1460, isAnniversary: false, isSelected: false },
+                { year: 1480, isAnniversary: false, isSelected: false }
             ]
         };
         deepFreeze(stateBefore);
@@ -312,11 +312,11 @@ describe('TimelineWrapper prev range - test 1', () => {
             zoom: 3,
             partitionCount: 5,
             partitions: [
-                { year: 1380 },
-                { year: 1400 },
-                { year: 1420 },
-                { year: 1440 },
-                { year: 1460 }
+                { year: 1380, isAnniversary: false, isSelected: false },
+                { year: 1400, isAnniversary: true, isSelected: false },
+                { year: 1420, isAnniversary: false, isSelected: true },
+                { year: 1440, isAnniversary: false, isSelected: false },
+                { year: 1460, isAnniversary: false, isSelected: false }
             ]
         };
 
@@ -325,3 +325,39 @@ describe('TimelineWrapper prev range - test 1', () => {
         })).toEqual(stateAfter);
     });
 });
+
+describe('TimelineWrapper selected year - test 1', () => {
+    it('it should move range to previous 5 decades', () => {
+        const stateBefore = {
+            year: 1444,
+            zoom: 3,
+            partitionCount: 5,
+            partitions: [
+                { year: 1400, isAnniversary: true, isSelected: false },
+                { year: 1420, isAnniversary: false, isSelected: false },
+                { year: 1440, isAnniversary: false, isSelected: true },
+                { year: 1460, isAnniversary: false, isSelected: false },
+                { year: 1480, isAnniversary: false, isSelected: false }
+            ]
+        };
+        deepFreeze(stateBefore);
+
+        const stateAfter = {
+            year: 1424,
+            zoom: 3,
+            partitionCount: 5,
+            partitions: [
+                { year: 1380, isAnniversary: false, isSelected: false },
+                { year: 1400, isAnniversary: true, isSelected: false },
+                { year: 1420, isAnniversary: false, isSelected: true },
+                { year: 1440, isAnniversary: false, isSelected: false },
+                { year: 1460, isAnniversary: false, isSelected: false }
+            ]
+        };
+
+        expect(timelineReducer(stateBefore, {
+            type: actionNames.ERA_MINUS
+        })).toEqual(stateAfter);
+    });
+});
+

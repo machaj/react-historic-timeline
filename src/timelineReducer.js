@@ -29,7 +29,7 @@ function fillPartitions(partitionCount, selectedYear, zoomLevel) {
     for (let year = startingYear; year < endYear; year = year + zoomCorrection) {
         partitions.push({
             isAnniversary: year % anniversaryYear === 0,
-            isSelected: selectedYear === year,
+            isSelected: roundedYear === year,
             year
         });
     }

@@ -21,7 +21,7 @@ class TimelineWrapper extends React.Component {
         this.state = {
             timelineObject: timelineReducer({}, {
                 type: actionNames.TIMELINE_INIT,
-                year: 1450,
+                year: 1444,
                 zoom: 3,
                 partitionCount: 20
             })
