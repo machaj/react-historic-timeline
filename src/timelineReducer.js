@@ -7,7 +7,7 @@ function checkZoom(newZoom) {
 
     if (newZoom < 0) {
         result = 0;
-    } else if (zoomLevels.length < newZoom) {
+    } else if (zoomLevels.length - 1 < newZoom) {
         result = zoomLevels.length - 1;
     } else {
         result = newZoom;

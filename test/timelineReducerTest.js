@@ -158,6 +158,37 @@ describe('TimelineWrapper zoom out - test 1', () => {
     });
 });
 
+describe('TimelineWrapper zoom out - test 2', () => {
+    it('it should not zoom out when zoom is at minimum detail', () => {
+        const stateBefore = {
+            year: 1424,
+            zoom: 6,
+            partitionCount: 3,
+            partitions: [
+                { year: 1300, isAnniversary: false, isSelected: false },
+                { year: 1400, isAnniversary: false, isSelected: true },
+                { year: 1500, isAnniversary: true, isSelected: false }
+            ]
+        };
+        deepFreeze(stateBefore);
+
+        const stateAfter = {
+            year: 1424,
+            zoom: 6,
+            partitionCount: 3,
+            partitions: [
+                { year: 1300, isAnniversary: false, isSelected: false },
+                { year: 1400, isAnniversary: false, isSelected: true },
+                { year: 1500, isAnniversary: true, isSelected: false }
+            ]
+        };
+
+        expect(timelineReducer(stateBefore, {
+            type: actionNames.ERA_ZOOM_OUT
+        })).toEqual(stateAfter);
+    });
+});
+
 describe('TimelineWrapper zoom in - test 1', () => {
     it('it should switch from five to one year scope', () => {
         const stateBefore = {
