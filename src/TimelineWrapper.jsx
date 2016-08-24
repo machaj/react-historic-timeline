@@ -2,7 +2,7 @@ import React from 'react/react';
 
 import * as actionNames from './timelineActionTypes.js';
 import timelineReducer from './timelineReducer.js';
-import Timeline from './Timeline';
+import Timeline from './Timeline'; // eslint-disable-line
 
 const timelineComponentStyle = {
     textAlign: 'center'

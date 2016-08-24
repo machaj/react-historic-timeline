@@ -1,6 +1,6 @@
 import React from 'react/react';
 
-import TimelineElement from './TimelineElement';
+import TimelineElement from './TimelineElement'; // eslint-disable-line
 
 const timelineContainerStyle = {
     position: 'absolute',
@@ -41,13 +41,14 @@ class Timeline extends React.Component {
     render() {
         const timelineElements = [];
 
-        this.props.partitions.forEach((partition, index) => {
+        this.props.partitions.forEach((partition) => {
             timelineElements.push(
                 <TimelineElement key={partition.year}
-                    index={index}
+                    index={partition.index}
                     year={partition.year}
                     isAnniversary={partition.isAnniversary}
                     isSelected={partition.isSelected}
+                    isVisible={partition.isVisible}
                     clickElementCallback={this.props.clickElementCallback}
                 />
             );
@@ -76,7 +77,7 @@ Timeline.propTypes = {
     partitions: React.PropTypes.array.isRequired,
     clickElementCallback: React.PropTypes.func.isRequired,
     clickNextCallback: React.PropTypes.func.isRequired,
-    clickPrevCallback: React.PropTypes.func.isRequired,
+    clickPrevCallback: React.PropTypes.func.isRequired
 };
 
 

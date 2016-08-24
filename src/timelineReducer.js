@@ -19,17 +19,22 @@ function checkZoom(newZoom) {
 function fillPartitions(partitionCount, selectedYear, zoomLevel) {
     const oddPartitionCount = partitionCount % 2 === 0 ? partitionCount + 1 : partitionCount;
     const zoomCorrection = zoomLevels[zoomLevel];
-    const partitionBefore = (oddPartitionCount - 1) / 2;
-    const partitions = [];
+    const yearShift = (oddPartitionCount - 1) / 2 * zoomCorrection;
     const roundedYear = selectedYear - (selectedYear % zoomCorrection);
-    const startingYear = roundedYear - zoomCorrection * partitionBefore;
-    const endYear = startingYear + (oddPartitionCount * zoomCorrection);
+    const startingYear = roundedYear - yearShift * 2;
+    const firstVisibleYear = roundedYear - yearShift;
+    const lastVisibleYear = roundedYear + yearShift;
+    const endYear = roundedYear + yearShift * 2;
     const anniversaryYear = zoomLevels[zoomLevel] * 5;
+    const partitions = [];
+    let index = - (oddPartitionCount - 1) / 2;
 
-    for (let year = startingYear; year < endYear; year = year + zoomCorrection) {
+    for (let year = startingYear; year <= endYear; year = year + zoomCorrection) {
         partitions.push({
+            index: index++,
             isAnniversary: year % anniversaryYear === 0,
             isSelected: roundedYear === year,
+            isVisible: (year >= firstVisibleYear && year <= lastVisibleYear),
             year
         });
     }

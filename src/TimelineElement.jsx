@@ -8,7 +8,8 @@ const timelineElementDefaultLabel = {
     paddingBottom: '15px',
     cursor: 'pointer',
     width: '50px',
-    transition: 'all 0.3s'
+    transition: 'all 0.3s',
+    opacity: 1
 };
 
 const timelineElementLabel = Object.assign(
@@ -41,7 +42,8 @@ const timelineDefaultDelimiter = {
     bottom: '0px',
     width: '1px',
     zIndex: 2,
-    transition: 'all 0.3s'
+    transition: 'all 0.3s',
+    opacity: 1
 };
 
 const timelineDelimiter = Object.assign(
@@ -62,7 +64,6 @@ const timelineAnniversaryDelimiter = Object.assign(
 
 class TimelineElement extends React.Component {
     componentWillMount() {
-        console.log(`Mounting: ${this.props.year}`);
         this.clickCallback = () => {
             this.props.clickElementCallback(
                 {
@@ -73,19 +74,28 @@ class TimelineElement extends React.Component {
     }
 
     render() {
-        console.log(`Render: ${this.props.year}`);
         let labelStyle = this.props.isAnniversary ? timelineElementAnniversaryLabel : timelineElementLabel;
+        let elementIsInvisible = {};
+
         if (this.props.isSelected) {
             labelStyle = timelineElementSelectedLabel;
         }
 
+        if (!this.props.isVisible) {
+            elementIsInvisible = {
+                opacity: 0
+            };
+        }
+
         const hrefStyle = Object.assign(
             { left: `${(this.props.index + 1) * 50}px` },
-            labelStyle
+            labelStyle,
+            elementIsInvisible
         );
         const spanStyle = Object.assign(
             { left: `${(this.props.index + 1) * 50 + 26}px` },
-            this.props.isAnniversary ? timelineAnniversaryDelimiter : timelineDelimiter
+            this.props.isAnniversary ? timelineAnniversaryDelimiter : timelineDelimiter,
+            elementIsInvisible
         );
 
         return (
@@ -102,6 +112,7 @@ TimelineElement.propTypes = {
     index: React.PropTypes.number.isRequired,
     isAnniversary: React.PropTypes.bool.isRequired,
     isSelected: React.PropTypes.bool.isRequired,
+    isVisible: React.PropTypes.bool.isRequired,
     year: React.PropTypes.number.isRequired
 };
 
