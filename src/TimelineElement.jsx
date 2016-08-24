@@ -7,7 +7,8 @@ const timelineElementDefaultLabel = {
     textAlign: 'center',
     paddingBottom: '15px',
     cursor: 'pointer',
-    width: '50px'
+    width: '50px',
+    transition: 'all 0.3s'
 };
 
 const timelineElementLabel = Object.assign(
@@ -40,7 +41,7 @@ const timelineDefaultDelimiter = {
     bottom: '0px',
     width: '1px',
     zIndex: 2,
-    transition: 'background-color 0.3s, border-color 0.3s'
+    transition: 'all 0.3s'
 };
 
 const timelineDelimiter = Object.assign(
@@ -61,6 +62,7 @@ const timelineAnniversaryDelimiter = Object.assign(
 
 class TimelineElement extends React.Component {
     componentWillMount() {
+        console.log(`Mounting: ${this.props.year}`);
         this.clickCallback = () => {
             this.props.clickElementCallback(
                 {
@@ -71,6 +73,7 @@ class TimelineElement extends React.Component {
     }
 
     render() {
+        console.log(`Render: ${this.props.year}`);
         let labelStyle = this.props.isAnniversary ? timelineElementAnniversaryLabel : timelineElementLabel;
         if (this.props.isSelected) {
             labelStyle = timelineElementSelectedLabel;

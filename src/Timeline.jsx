@@ -43,7 +43,8 @@ class Timeline extends React.Component {
 
         this.props.partitions.forEach((partition, index) => {
             timelineElements.push(
-                <TimelineElement index={index}
+                <TimelineElement key={partition.year}
+                    index={index}
                     year={partition.year}
                     isAnniversary={partition.isAnniversary}
                     isSelected={partition.isSelected}
