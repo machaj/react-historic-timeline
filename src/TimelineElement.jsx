@@ -7,44 +7,16 @@ const timelineElementDefaultLabel = {
     zIndex: 2,
     textAlign: 'center',
     paddingBottom: '15px',
-    cursor: 'pointer',
     width: '50px',
-    transition: 'all 0.3s',
-    opacity: 1
+    transition: 'all 0.3s'
 };
-
-const timelineElementLabel = Object.assign(
-    {
-        color: 'rgba(0, 0, 0, 0.4)',
-        fontSize: '0.85em'
-    },
-    timelineElementDefaultLabel
-);
-
-const timelineElementAnniversaryLabel = Object.assign(
-    {
-        color: 'black',
-        fontWeight: 'bold'
-    },
-    timelineElementDefaultLabel
-);
-
-const timelineElementSelectedLabel = Object.assign(
-    {
-        color: 'red',
-        fontWeight: 'bolder',
-        fontSize: '1.2em'
-    },
-    timelineElementDefaultLabel
-);
 
 const timelineDefaultDelimiter = {
     position: 'absolute',
     bottom: '0px',
     width: '1px',
     zIndex: 2,
-    transition: 'all 0.3s',
-    opacity: 1
+    transition: 'all 0.3s'
 };
 
 const timelineDelimiter = Object.assign(
@@ -78,36 +50,43 @@ class TimelineElement extends React.Component {
 
     render() {
         const positionLeft = TimelineElement.calculatePosition(this.props.index);
-        let labelStyle = this.props.isAnniversary ? timelineElementAnniversaryLabel : timelineElementLabel;
-        let elementIsInvisible = {};
+        const opacity = this.props.isVisible ? 1 : 0;
+        const isClickable = (this.props.isEnabled && this.props.isVisible);
+        const labelStyle = {
+            left: `${positionLeft}px`,
+            width: `${this.props.elementSize}px`,
+            cursor: isClickable ? 'pointer' : 'default',
+            opacity
+        };
+
 
         if (this.props.index === 0) {
-            labelStyle = timelineElementSelectedLabel;
-        }
-
-        if (!this.props.isVisible) {
-            elementIsInvisible = {
-                opacity: 0
-            };
+            labelStyle.color = 'red';
+            labelStyle.fontWeight = 'bolder';
+            labelStyle.fontSize = '1.2em';
+        } else if (this.props.isAnniversary) {
+            labelStyle.color = this.props.isEnabled ? 'black' : 'rgba(0, 0, 0, 0.25)';
+            labelStyle.fontWeight = 'bold';
+        } else {
+            labelStyle.color = this.props.isEnabled ? 'rgba(0, 0, 0, 0.4)' : 'rgba(0, 0, 0, 0.15)';
+            labelStyle.fontSize = '0.85em';
         }
 
         const hrefStyle = Object.assign(
-            {
-                left: `${positionLeft}px`,
-                width: `${this.props.elementSize}px`
-            },
             labelStyle,
-            elementIsInvisible
+            timelineElementDefaultLabel
         );
         const spanStyle = Object.assign(
-            { left: `${positionLeft + TIMELINE_SPACER}px` },
-            this.props.isAnniversary ? timelineAnniversaryDelimiter : timelineDelimiter,
-            elementIsInvisible
+            {
+                left: `${positionLeft + TIMELINE_SPACER}px`,
+                opacity
+            },
+            this.props.isAnniversary ? timelineAnniversaryDelimiter : timelineDelimiter
         );
 
         return (
             <li>
-                <a onClick={this.clickCallback} style={hrefStyle} >{this.props.year}</a>
+                <a onClick={isClickable ? this.clickCallback : null} style={hrefStyle} >{this.props.year}</a>
                 <span style={spanStyle}></span>
             </li>
         );
@@ -124,6 +103,7 @@ TimelineElement.calculatePosition = (index) => {
 TimelineElement.propTypes = {
     index: React.PropTypes.number.isRequired,
     isAnniversary: React.PropTypes.bool.isRequired,
+    isEnabled: React.PropTypes.bool.isRequired,
     isVisible: React.PropTypes.bool.isRequired,
     year: React.PropTypes.number.isRequired
 };

@@ -1,7 +1,6 @@
 import React from 'react/react';
 
 import * as actionNames from './timelineActionTypes.js';
-import { TIMELINE_SPACER } from './timelineConstants';
 import timelineReducer from './timelineReducer.js';
 import Timeline from './Timeline'; // eslint-disable-line
 import TimelineElement from './TimelineElement'; // eslint-disable-line
@@ -98,6 +97,8 @@ class TimelineWrapper extends React.Component {
             timelineObject: timelineReducer({}, {
                 type: actionNames.TIMELINE_INIT,
                 year: 1444,
+                minYear: this.props.minYear,
+                maxYear: this.props.maxYear,
                 zoom: 3,
                 partitionCount: calculatePartitionCount()
             })
@@ -127,7 +128,9 @@ class TimelineWrapper extends React.Component {
 }
 
 TimelineWrapper.propTypes = {
-    elementSize: React.PropTypes.number
+    elementSize: React.PropTypes.number,
+    minYear: React.PropTypes.number,
+    maxYear: React.PropTypes.number
 };
 
 export default TimelineWrapper;

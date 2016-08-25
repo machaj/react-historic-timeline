@@ -20,7 +20,7 @@ const timelineOlStyle = {
 const timelineArrowStyle = {
     position: 'absolute',
     bottom: 0,
-    zIndex: 2,
+    zIndex: 3,
     textAlign: 'center',
     paddingBottom: '15px',
     cursor: 'pointer',
@@ -47,6 +47,7 @@ class Timeline extends React.Component {
                     index={partition.index}
                     year={partition.year}
                     isAnniversary={partition.isAnniversary}
+                    isEnabled={partition.isEnabled}
                     isVisible={partition.isVisible}
                 />
             );
