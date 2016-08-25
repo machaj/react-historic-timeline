@@ -27,13 +27,12 @@ function fillPartitions(partitionCount, selectedYear, zoomLevel) {
     const endYear = roundedYear + yearShift * 2;
     const anniversaryYear = zoomLevels[zoomLevel] * 5;
     const partitions = [];
-    let index = - (oddPartitionCount - 1) / 2;
+    let index = - (oddPartitionCount - 1);
 
     for (let year = startingYear; year <= endYear; year = year + zoomCorrection) {
         partitions.push({
             index: index++,
             isAnniversary: year % anniversaryYear === 0,
-            isSelected: roundedYear === year,
             isVisible: (year >= firstVisibleYear && year <= lastVisibleYear),
             year
         });
@@ -52,6 +51,12 @@ export default (state = {}, action = {}) => {
             zoom: action.zoom,
             partitionCount: action.partitionCount,
             partitions: fillPartitions(action.partitionCount, action.year, action.zoom)
+        };
+    case actionNames.TIMELINE_CHANGE_PARTITION:
+        return {
+            ...state,
+            partitionCount: action.partitionCount,
+            partitions: fillPartitions(action.partitionCount, state.year, state.zoom)
         };
     case actionNames.ERA_ENTERED:
         return {

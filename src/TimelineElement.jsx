@@ -1,4 +1,5 @@
 import React from 'react/react';
+import { TIMELINE_SPACER } from './timelineConstants';
 
 const timelineElementDefaultLabel = {
     position: 'absolute',
@@ -65,19 +66,22 @@ const timelineAnniversaryDelimiter = Object.assign(
 class TimelineElement extends React.Component {
     componentWillMount() {
         this.clickCallback = () => {
-            this.props.clickElementCallback(
-                {
-                    year: this.props.year
-                }
-            );
+            if (typeof TimelineElement.clickCallback === 'function') {
+                TimelineElement.clickCallback(
+                    {
+                        year: this.props.year
+                    }
+                );
+            }
         };
     }
 
     render() {
+        const positionLeft = TimelineElement.calculatePosition(this.props.index);
         let labelStyle = this.props.isAnniversary ? timelineElementAnniversaryLabel : timelineElementLabel;
         let elementIsInvisible = {};
 
-        if (this.props.isSelected) {
+        if (this.props.index === 0) {
             labelStyle = timelineElementSelectedLabel;
         }
 
@@ -88,12 +92,15 @@ class TimelineElement extends React.Component {
         }
 
         const hrefStyle = Object.assign(
-            { left: `${(this.props.index + 1) * 50}px` },
+            {
+                left: `${positionLeft}px`,
+                width: `${this.props.elementSize}px`
+            },
             labelStyle,
             elementIsInvisible
         );
         const spanStyle = Object.assign(
-            { left: `${(this.props.index + 1) * 50 + 26}px` },
+            { left: `${positionLeft + TIMELINE_SPACER}px` },
             this.props.isAnniversary ? timelineAnniversaryDelimiter : timelineDelimiter,
             elementIsInvisible
         );
@@ -107,11 +114,16 @@ class TimelineElement extends React.Component {
     }
 }
 
+TimelineElement.parentContainerCenter = 0;
+TimelineElement.size = 100;
+
+TimelineElement.calculatePosition = (index) => {
+    return TimelineElement.parentContainerCenter + (index - 1.5) * TimelineElement.size;
+};
+
 TimelineElement.propTypes = {
-    clickElementCallback: React.PropTypes.func.isRequired,
     index: React.PropTypes.number.isRequired,
     isAnniversary: React.PropTypes.bool.isRequired,
-    isSelected: React.PropTypes.bool.isRequired,
     isVisible: React.PropTypes.bool.isRequired,
     year: React.PropTypes.number.isRequired
 };

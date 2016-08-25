@@ -47,9 +47,7 @@ class Timeline extends React.Component {
                     index={partition.index}
                     year={partition.year}
                     isAnniversary={partition.isAnniversary}
-                    isSelected={partition.isSelected}
                     isVisible={partition.isVisible}
-                    clickElementCallback={this.props.clickElementCallback}
                 />
             );
         });
@@ -74,10 +72,9 @@ class Timeline extends React.Component {
 }
 
 Timeline.propTypes = {
-    partitions: React.PropTypes.array.isRequired,
-    clickElementCallback: React.PropTypes.func.isRequired,
     clickNextCallback: React.PropTypes.func.isRequired,
-    clickPrevCallback: React.PropTypes.func.isRequired
+    clickPrevCallback: React.PropTypes.func.isRequired,
+    partitions: React.PropTypes.array.isRequired
 };
 
 

@@ -27,6 +27,10 @@
     "no-underscore-dangle": [
       "error",
       { "allowAfterThis": true }
+    ],
+    "arrow-body-style": [
+      "error",
+      "always"
     ]
   }
 }
