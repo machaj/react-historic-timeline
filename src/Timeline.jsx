@@ -49,6 +49,7 @@ class Timeline extends React.Component {
                     isAnniversary={partition.isAnniversary}
                     isEnabled={partition.isEnabled}
                     isVisible={partition.isVisible}
+                    enabledControl={this.props.enabledControl}
                 />
             );
         });
@@ -75,7 +76,8 @@ class Timeline extends React.Component {
 Timeline.propTypes = {
     clickNextCallback: React.PropTypes.func.isRequired,
     clickPrevCallback: React.PropTypes.func.isRequired,
-    partitions: React.PropTypes.array.isRequired
+    partitions: React.PropTypes.array.isRequired,
+    enabledControl: React.PropTypes.bool.isRequired
 };
 
 

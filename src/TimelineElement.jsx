@@ -60,7 +60,7 @@ class TimelineElement extends React.Component {
         };
 
 
-        if (this.props.index === 0) {
+        if (this.props.index === 0 && !this.props.enabledControl) {
             labelStyle.color = 'red';
             labelStyle.fontWeight = 'bolder';
             labelStyle.fontSize = '1.2em';
@@ -105,7 +105,8 @@ TimelineElement.propTypes = {
     isAnniversary: React.PropTypes.bool.isRequired,
     isEnabled: React.PropTypes.bool.isRequired,
     isVisible: React.PropTypes.bool.isRequired,
-    year: React.PropTypes.number.isRequired
+    year: React.PropTypes.number.isRequired,
+    enabledControl: React.PropTypes.bool.isRequired
 };
 
 
