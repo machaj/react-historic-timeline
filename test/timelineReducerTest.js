@@ -2,7 +2,7 @@ import expect from 'expect';
 import deepFreeze from 'deep-freeze';
 
 import * as actionNames from '../src/timelineActionTypes.js';
-import timelineReducer from '../src/timelineReducer.js';
+import { timelineReducer } from '../src/timelineReducer.js';
 
 describe('TimelineWrapper initialization - test 1', () => {
     it('it should return initialized timeline', () => {

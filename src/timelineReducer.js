@@ -1,6 +1,6 @@
 import * as actionNames from './timelineActionTypes.js';
 
-const zoomLevels = [1, 5, 10, 20, 25, 50, 100];
+export const zoomLevels = [1, 5, 10, 20, 25, 50, 100];
 
 function checkZoom(newZoom) {
     let result;
@@ -43,7 +43,7 @@ function fillPartitions(partitionCount, selectedYear, zoomLevel, minYear, maxYea
     return partitions;
 }
 
-export default (state = {}, action = {}) => {
+export function timelineReducer(state = {}, action = {}) {
     let updatedYear = null;
     let updatedZoom = null;
     let minYear = null;

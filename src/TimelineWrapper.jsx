@@ -2,7 +2,7 @@ require('./../asset/timeline.css');
 import React from 'react/react';
 
 import * as actionNames from './timelineActionTypes.js';
-import timelineReducer from './timelineReducer.js';
+import { timelineReducer, zoomLevels as timelineZooms } from './timelineReducer.js';
 import Timeline from './Timeline'; // eslint-disable-line
 import TimelineElement from './TimelineElement'; // eslint-disable-line
 import TimelineControl from './TimelineControl'; // eslint-disable-line
@@ -23,10 +23,26 @@ const calculatePartitionCount = () => {
     return defaultCount % 2 === 0 ? defaultCount - 1 : defaultCount;
 };
 
+function generateData(timelineObject) {
+    const yearRange = timelineZooms[timelineObject.zoom];
+    const result = [];
+
+    timelineObject.partitions.forEach((item) => {
+        result.push({
+            index: item.index,
+            yearFrom: item.year,
+            yearTo: item.year + yearRange,
+            isVisible: item.isVisible
+        });
+    });
+    return result;
+}
+
 class TimelineWrapper extends React.Component {
     constructor() {
         super();
         this.state = {};
+        this.registeredCallbacks = [];
         this.updateTimeout = null;
 
         TimelineElement.clickCallback = (elementProps) => {
@@ -105,6 +121,12 @@ class TimelineWrapper extends React.Component {
                 });
             }, 100);
         };
+
+        this.register = (callback) => {
+            if (typeof callback === 'function') {
+                this.registeredCallbacks.push(callback);
+            }
+        };
     }
 
     componentWillMount() {
@@ -130,8 +152,10 @@ class TimelineWrapper extends React.Component {
 
     timelineObjectReducer(action) {
         const timelineObject = timelineReducer(this.state.timelineObject, action);
-
-        console.log(timelineObject);
+        const callbackData = generateData(timelineObject);
+        this.registeredCallbacks.forEach((callback) => {
+            callback(callbackData);
+        });
         this.setState({ timelineObject });
     }
 
@@ -144,6 +168,9 @@ class TimelineWrapper extends React.Component {
             />
         ) : '';
 
+        const children = this.props.children ?
+            React.cloneElement(this.props.children, { register: this.register }) : null;
+
         return (
             <div style={ timelineComponentStyle }>
                 <div style={timelineWrapperStyle}>
@@ -154,6 +181,7 @@ class TimelineWrapper extends React.Component {
                         enabledControl={ this.enableControl }
                     />
                 </div>
+                {children}
             </div>
         );
     }
@@ -165,7 +193,8 @@ TimelineWrapper.propTypes = {
     maxYear: React.PropTypes.number,
     year: React.PropTypes.number,
     enableControl: React.PropTypes.bool,
-    zoom: React.PropTypes.number
+    zoom: React.PropTypes.number,
+    children: React.PropTypes.element
 };
 
 export default TimelineWrapper;

@@ -25,7 +25,8 @@ const timelineYearInputStyle = {
 const timelineZoomButtonsContainerStyle = {
     position: 'absolute',
     top: '60px',
-    left: '17px'
+    left: '17px',
+    cursor: 'pointer'
 };
 
 class TimelineControl extends React.Component {
@@ -43,7 +44,7 @@ class TimelineControl extends React.Component {
             }
             this.timeoutId = setTimeout(() => {
                 this.props.setYearCallback(parseInt(value, 10));
-            }, 500);
+            }, 1000);
         };
     }
 
