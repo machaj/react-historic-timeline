@@ -20,7 +20,9 @@ function fillPartitions(partitionCount, selectedYear, zoomLevel, minYear, maxYea
     const oddPartitionCount = partitionCount % 2 === 0 ? partitionCount + 1 : partitionCount;
     const zoomCorrection = zoomLevels[zoomLevel];
     const yearShift = (oddPartitionCount - 1) / 2 * zoomCorrection;
-    const roundedYear = selectedYear - (selectedYear % zoomCorrection);
+    const yearMod = selectedYear % zoomCorrection;
+    const yearMinusMod = selectedYear - yearMod;
+    const roundedYear = (zoomCorrection / 2) < yearMod ? yearMinusMod + zoomCorrection : yearMinusMod;
     const startingYear = roundedYear - yearShift * 2;
     const firstVisibleYear = roundedYear - yearShift;
     const lastVisibleYear = roundedYear + yearShift;

@@ -43,7 +43,7 @@ describe('TimelineWrapper initialization - test 2', () => {
         deepFreeze(stateBefore);
 
         const stateAfter = {
-            year: 1424,
+            year: 1422,
             minYear: null,
             maxYear: null,
             zoom: 1,
@@ -71,7 +71,7 @@ describe('TimelineWrapper initialization - test 2', () => {
 
         expect(timelineReducer(stateBefore, {
             type: actionNames.TIMELINE_INIT,
-            year: 1424,
+            year: 1422,
             zoom: 1,
             partitionCount: 9
         })).toEqual(stateAfter);
@@ -316,7 +316,7 @@ describe('TimelineWrapper zoom in - test 2', () => {
 describe('TimelineWrapper change era - test 1', () => {
     it('it should recalculate years', () => {
         const stateBefore = {
-            year: 1424,
+            year: 1422,
             minYear: null,
             maxYear: null,
             zoom: 3,
@@ -342,15 +342,15 @@ describe('TimelineWrapper change era - test 1', () => {
             zoom: 3,
             partitionCount: 5,
             partitions: [
-                { index: -4, year: 1460, isAnniversary: false, isVisible: false, isEnabled: true },
-                { index: -3, year: 1480, isAnniversary: false, isVisible: false, isEnabled: true },
-                { index: -2, year: 1500, isAnniversary: true, isVisible: true, isEnabled: true },
-                { index: -1, year: 1520, isAnniversary: false, isVisible: true, isEnabled: true },
-                { index: 0, year: 1540, isAnniversary: false, isVisible: true, isEnabled: true },
-                { index: 1, year: 1560, isAnniversary: false, isVisible: true, isEnabled: true },
-                { index: 2, year: 1580, isAnniversary: false, isVisible: true, isEnabled: true },
-                { index: 3, year: 1600, isAnniversary: true, isVisible: false, isEnabled: true },
-                { index: 4, year: 1620, isAnniversary: false, isVisible: false, isEnabled: true }
+                { index: -4, year: 1480, isAnniversary: false, isVisible: false, isEnabled: true },
+                { index: -3, year: 1500, isAnniversary: true, isVisible: false, isEnabled: true },
+                { index: -2, year: 1520, isAnniversary: false, isVisible: true, isEnabled: true },
+                { index: -1, year: 1540, isAnniversary: false, isVisible: true, isEnabled: true },
+                { index: 0, year: 1560, isAnniversary: false, isVisible: true, isEnabled: true },
+                { index: 1, year: 1580, isAnniversary: false, isVisible: true, isEnabled: true },
+                { index: 2, year: 1600, isAnniversary: true, isVisible: true, isEnabled: true },
+                { index: 3, year: 1620, isAnniversary: false, isVisible: false, isEnabled: true },
+                { index: 4, year: 1640, isAnniversary: false, isVisible: false, isEnabled: true }
             ]
         };
 

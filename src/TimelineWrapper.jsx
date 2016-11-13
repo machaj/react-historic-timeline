@@ -30,44 +30,26 @@ class TimelineWrapper extends React.Component {
         this.updateTimeout = null;
 
         TimelineElement.clickCallback = (elementProps) => {
-            this.setState({
-                timelineObject: timelineReducer(this.state.timelineObject, {
-                    type: actionNames.ERA_ENTERED,
-                    year: elementProps.year }
-                )
+            this.timelineObjectReducer({
+                type: actionNames.ERA_ENTERED,
+                year: elementProps.year
             });
         };
 
         this.clickNextCallback = () => {
-            this.setState({
-                timelineObject: timelineReducer(this.state.timelineObject, {
-                    type: actionNames.ERA_PLUS
-                })
-            });
+            this.timelineObjectReducer({ type: actionNames.ERA_PLUS });
         };
 
         this.clickPrevCallback = () => {
-            this.setState({
-                timelineObject: timelineReducer(this.state.timelineObject, {
-                    type: actionNames.ERA_MINUS
-                })
-            });
+            this.timelineObjectReducer({ type: actionNames.ERA_MINUS });
         };
 
         this.clickZoomInCallback = () => {
-            this.setState({
-                timelineObject: timelineReducer(this.state.timelineObject, {
-                    type: actionNames.ERA_ZOOM_IN
-                })
-            });
+            this.timelineObjectReducer({ type: actionNames.ERA_ZOOM_IN });
         };
 
         this.clickZoomOutCallback = () => {
-            this.setState({
-                timelineObject: timelineReducer(this.state.timelineObject, {
-                    type: actionNames.ERA_ZOOM_OUT
-                })
-            });
+            this.timelineObjectReducer({ type: actionNames.ERA_ZOOM_OUT });
         };
 
         this.changeYearCallback = (year) => {
@@ -93,19 +75,15 @@ class TimelineWrapper extends React.Component {
                 }
 
                 if (updateState) {
-                    this.setState({
-                        timelineObject: timelineReducer(this.state.timelineObject, {
-                            type: actionNames.ERA_ENTERED,
-                            year
-                        })
+                    this.timelineObjectReducer({
+                        type: actionNames.ERA_ENTERED,
+                        year
                     });
                 } else {
                     this.updateTimeout = setTimeout(() => {
-                        this.setState({
-                            timelineObject: timelineReducer(this.state.timelineObject, {
-                                type: actionNames.ERA_ENTERED,
-                                year: newYear
-                            })
+                        this.timelineObjectReducer({
+                            type: actionNames.ERA_ENTERED,
+                            year: newYear
                         });
                     }, 2000);
                 }
@@ -121,11 +99,9 @@ class TimelineWrapper extends React.Component {
 
             this.windowResizeHandelerTimeoutId = setTimeout(() => {
                 TimelineElement.parentContainerCenter = window.innerWidth / 2;
-                this.setState({
-                    timelineObject: timelineReducer(this.state.timelineObject, {
-                        type: actionNames.TIMELINE_CHANGE_PARTITION,
-                        partitionCount: calculatePartitionCount()
-                    })
+                this.timelineObjectReducer({
+                    type: actionNames.TIMELINE_CHANGE_PARTITION,
+                    partitionCount: calculatePartitionCount()
                 });
             }, 100);
         };
@@ -150,6 +126,13 @@ class TimelineWrapper extends React.Component {
 
     componentWillUnmount() {
         window.removeEventListener('resize', this.windowResizeHandeler);
+    }
+
+    timelineObjectReducer(action) {
+        const timelineObject = timelineReducer(this.state.timelineObject, action);
+
+        console.log(timelineObject);
+        this.setState({ timelineObject });
     }
 
     render() {
