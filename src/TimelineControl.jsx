@@ -1,4 +1,4 @@
-import React from 'react/react';
+import React from 'react';
 
 const width = '55px';
 

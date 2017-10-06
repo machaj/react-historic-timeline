@@ -1,11 +1,12 @@
-require('./../asset/timeline.css');
-import React from 'react/react';
+import React from 'react';
 
-import * as actionNames from './timelineActionTypes.js';
-import { timelineReducer, zoomLevels as timelineZooms } from './timelineReducer.js';
-import Timeline from './Timeline'; // eslint-disable-line
-import TimelineElement from './TimelineElement'; // eslint-disable-line
-import TimelineControl from './TimelineControl'; // eslint-disable-line
+import * as actionNames from './timelineActionTypes';
+import { timelineReducer, zoomLevels as timelineZooms } from './timelineReducer';
+import Timeline from './Timeline.jsx'; //eslint-disable-line
+import TimelineElement from './TimelineElement.jsx'; //eslint-disable-line
+import TimelineControl from './TimelineControl.jsx'; //eslint-disable-line
+
+require('./../asset/timeline.css');
 
 const timelineComponentStyle = {
     textAlign: 'center'

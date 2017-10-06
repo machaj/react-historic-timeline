@@ -1,4 +1,4 @@
-import React from 'react/react';
+import React from 'react';
 import { TIMELINE_SPACER } from './timelineConstants';
 
 const timelineElementDefaultLabel = {
@@ -39,11 +39,9 @@ class TimelineElement extends React.Component {
     componentWillMount() {
         this.clickCallback = () => {
             if (typeof TimelineElement.clickCallback === 'function') {
-                TimelineElement.clickCallback(
-                    {
-                        year: this.props.year
-                    }
-                );
+                TimelineElement.clickCallback({
+                    year: this.props.year
+                });
             }
         };
     }
@@ -97,7 +95,7 @@ TimelineElement.parentContainerCenter = 0;
 TimelineElement.size = 100;
 
 TimelineElement.calculatePosition = (index) => {
-    return TimelineElement.parentContainerCenter + (index - 1.5) * TimelineElement.size;
+    return TimelineElement.parentContainerCenter + ((index - 1.5) * TimelineElement.size);
 };
 
 TimelineElement.propTypes = {

@@ -6,7 +6,8 @@
   "extends": "airbnb/base",
   "globals": {
     "describe": true,
-    "it": true
+    "it": true,
+    "window": true
   },
   "parserOptions": {
     "sourceType": "module"
@@ -31,6 +32,9 @@
     "arrow-body-style": [
       "error",
       "always"
+    ],
+    "prefer-destructuring": [
+      "error", {"object": false}
     ]
   }
 }

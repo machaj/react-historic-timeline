@@ -1,6 +1,6 @@
-import React from 'react/react';
+import React from 'react';
 
-import TimelineElement from './TimelineElement'; // eslint-disable-line
+import TimelineElement from './TimelineElement.jsx'; //eslint-disable-line
 
 const timelineContainerStyle = {
     position: 'absolute',
@@ -42,31 +42,30 @@ class Timeline extends React.Component {
         const timelineElements = [];
 
         this.props.partitions.forEach((partition) => {
-            timelineElements.push(
-                <TimelineElement key={partition.year}
-                    index={partition.index}
-                    year={partition.year}
-                    isAnniversary={partition.isAnniversary}
-                    isEnabled={partition.isEnabled}
-                    isVisible={partition.isVisible}
-                    enabledControl={this.props.enabledControl}
-                />
-            );
+            timelineElements.push(<TimelineElement key={partition.year}
+                index={partition.index}
+                year={partition.year}
+                isAnniversary={partition.isAnniversary}
+                isEnabled={partition.isEnabled}
+                isVisible={partition.isVisible}
+                enabledControl={this.props.enabledControl}
+            />);
         });
 
         return (
             <div style={timelineContainerStyle}>
                 <ol style={timelineOlStyle}>
                     <li>
-                        <a onClick={this.props.clickPrevCallback}
-                           style={timelineLeftArrowStyle}
-                        >&lt;&lt;</a>
+                        <a onClick={this.props.clickPrevCallback} style={timelineLeftArrowStyle}>
+                            &lt;&lt;
+                        </a>
                     </li>
                     {timelineElements}
                     <li>
-                        <a onClick={this.props.clickNextCallback}
-                           style={timelineRightArrowStyle}
-                        >&gt;&gt;</a></li>
+                        <a onClick={this.props.clickNextCallback} style={timelineRightArrowStyle}>
+                            &gt;&gt;
+                        </a>
+                    </li>
                 </ol>
             </div>
         );
