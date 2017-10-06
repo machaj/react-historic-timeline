@@ -1,10 +1,11 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import * as actionNames from './timelineActionTypes';
 import { timelineReducer, zoomLevels as timelineZooms } from './timelineReducer';
-import Timeline from './Timeline.jsx'; //eslint-disable-line
-import TimelineElement from './TimelineElement.jsx'; //eslint-disable-line
-import TimelineControl from './TimelineControl.jsx'; //eslint-disable-line
+import Timeline from './Timeline'; //eslint-disable-line
+import TimelineElement from './TimelineElement'; //eslint-disable-line
+import TimelineControl from './TimelineControl'; //eslint-disable-line
 
 require('./../asset/timeline.css');
 
@@ -189,13 +190,13 @@ class TimelineWrapper extends React.Component {
 }
 
 TimelineWrapper.propTypes = {
-    elementSize: React.PropTypes.number,
-    minYear: React.PropTypes.number,
-    maxYear: React.PropTypes.number,
-    year: React.PropTypes.number,
-    enableControl: React.PropTypes.bool,
-    zoom: React.PropTypes.number,
-    children: React.PropTypes.element
+    elementSize: PropTypes.number,
+    minYear: PropTypes.number,
+    maxYear: PropTypes.number,
+    year: PropTypes.number,
+    enableControl: PropTypes.bool,
+    zoom: PropTypes.number,
+    children: PropTypes.element
 };
 
 export default TimelineWrapper;

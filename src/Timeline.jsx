@@ -1,6 +1,7 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
-import TimelineElement from './TimelineElement.jsx'; //eslint-disable-line
+import TimelineElement from './TimelineElement'; //eslint-disable-line
 
 const timelineContainerStyle = {
     position: 'absolute',
@@ -73,10 +74,10 @@ class Timeline extends React.Component {
 }
 
 Timeline.propTypes = {
-    clickNextCallback: React.PropTypes.func.isRequired,
-    clickPrevCallback: React.PropTypes.func.isRequired,
-    partitions: React.PropTypes.array.isRequired,
-    enabledControl: React.PropTypes.bool.isRequired
+    clickNextCallback: PropTypes.func.isRequired,
+    clickPrevCallback: PropTypes.func.isRequired,
+    partitions: PropTypes.array.isRequired,
+    enabledControl: PropTypes.bool.isRequired
 };
 
 

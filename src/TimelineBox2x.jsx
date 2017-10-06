@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 class TimelineBox2x extends React.Component {
     componentWillMount() {
@@ -7,7 +8,7 @@ class TimelineBox2x extends React.Component {
         });
     }
 
-    static render() {
+    render() {
         return (
             <div>
                 TADY
@@ -17,7 +18,7 @@ class TimelineBox2x extends React.Component {
 }
 
 TimelineBox2x.propTypes = {
-    register: React.PropTypes.func
+    register: PropTypes.func
 };
 
 export default TimelineBox2x;

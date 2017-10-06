@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 const width = '55px';
 
@@ -74,10 +75,10 @@ class TimelineControl extends React.Component {
 }
 
 TimelineControl.propTypes = {
-    year: React.PropTypes.number.isRequired,
-    clickZoomInCallback: React.PropTypes.func.isRequired,
-    clickZoomOutCallback: React.PropTypes.func.isRequired,
-    setYearCallback: React.PropTypes.func.isRequired
+    year: PropTypes.number.isRequired,
+    clickZoomInCallback: PropTypes.func.isRequired,
+    clickZoomOutCallback: PropTypes.func.isRequired,
+    setYearCallback: PropTypes.func.isRequired
 };
 
 

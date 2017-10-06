@@ -1,5 +1,7 @@
 import React from 'react';
-import { TIMELINE_SPACER } from './timelineConstants';
+import PropTypes from 'prop-types';
+
+import TIMELINE_SPACER from './timelineConstants';
 
 const timelineElementDefaultLabel = {
     position: 'absolute',
@@ -99,12 +101,12 @@ TimelineElement.calculatePosition = (index) => {
 };
 
 TimelineElement.propTypes = {
-    index: React.PropTypes.number.isRequired,
-    isAnniversary: React.PropTypes.bool.isRequired,
-    isEnabled: React.PropTypes.bool.isRequired,
-    isVisible: React.PropTypes.bool.isRequired,
-    year: React.PropTypes.number.isRequired,
-    enabledControl: React.PropTypes.bool.isRequired
+    index: PropTypes.number.isRequired,
+    isAnniversary: PropTypes.bool.isRequired,
+    isEnabled: PropTypes.bool.isRequired,
+    isVisible: PropTypes.bool.isRequired,
+    year: PropTypes.number.isRequired,
+    enabledControl: PropTypes.bool.isRequired
 };
 
 
