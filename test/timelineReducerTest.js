@@ -1,8 +1,8 @@
 import expect from 'expect';
 import deepFreeze from 'deep-freeze';
 
-import * as actionNames from '../src/timelineActionTypes';
-import { timelineReducer } from '../src/timelineReducer';
+import * as types from '../src/actions/types';
+import { timelineReducer } from '../src/reducers/timeline';
 
 describe('TimelineWrapper initialization - test 1', () => {
     it('it should return initialized timeline', () => {
@@ -39,7 +39,7 @@ describe('TimelineWrapper initialization - test 1', () => {
         };
 
         expect(timelineReducer(stateBefore, {
-            type: actionNames.TIMELINE_INIT,
+            type: types.TIMELINE_INIT,
             year: 1424,
             zoom: 0,
             partitionCount: 5
@@ -98,7 +98,7 @@ describe('TimelineWrapper initialization - test 2', () => {
         };
 
         expect(timelineReducer(stateBefore, {
-            type: actionNames.TIMELINE_INIT,
+            type: types.TIMELINE_INIT,
             year: 1422,
             zoom: 1,
             partitionCount: 9
@@ -245,7 +245,7 @@ describe('TimelineWrapper initialization - test 3', () => {
         };
 
         expect(timelineReducer(stateBefore, {
-            type: actionNames.TIMELINE_INIT,
+            type: types.TIMELINE_INIT,
             year: 1675,
             zoom: 1,
             partitionCount: 30
@@ -347,7 +347,7 @@ describe('TimelineWrapper zoom out - test 1', () => {
         };
 
         expect(timelineReducer(stateBefore, {
-            type: actionNames.ERA_ZOOM_OUT
+            type: types.TIMELINE_ERA_ZOOM_OUT
         })).toEqual(stateAfter);
     });
 });
@@ -377,7 +377,7 @@ describe('TimelineWrapper zoom out - test 2', () => {
         deepFreeze(stateBefore);
 
         expect(timelineReducer(stateBefore, {
-            type: actionNames.ERA_ZOOM_OUT
+            type: types.TIMELINE_ERA_ZOOM_OUT
         })).toEqual(stateBefore);
     });
 });
@@ -428,7 +428,7 @@ describe('TimelineWrapper zoom in - test 1', () => {
         };
 
         expect(timelineReducer(stateBefore, {
-            type: actionNames.ERA_ZOOM_IN
+            type: types.TIMELINE_ERA_ZOOM_IN
         })).toEqual(stateAfter);
     });
 });
@@ -458,7 +458,7 @@ describe('TimelineWrapper zoom in - test 2', () => {
         deepFreeze(stateBefore);
 
         expect(timelineReducer(stateBefore, {
-            type: actionNames.ERA_ZOOM_IN
+            type: types.TIMELINE_ERA_ZOOM_IN
         })).toEqual(stateBefore);
     });
 });
@@ -525,7 +525,7 @@ describe('TimelineWrapper change era - test 1', () => {
         };
 
         expect(timelineReducer(stateBefore, {
-            type: actionNames.ERA_ENTERED,
+            type: types.TIMELINE_ERA_ENTERED,
             year: 1555
         })).toEqual(stateAfter);
     });
@@ -593,7 +593,7 @@ describe('TimelineWrapper next range - test 1', () => {
         };
 
         expect(timelineReducer(stateBefore, {
-            type: actionNames.ERA_PLUS
+            type: types.TIMELINE_ERA_PLUS
         })).toEqual(stateAfter);
     });
 });
@@ -660,7 +660,7 @@ describe('TimelineWrapper prev range - test 1', () => {
         };
 
         expect(timelineReducer(stateBefore, {
-            type: actionNames.ERA_MINUS
+            type: types.TIMELINE_ERA_MINUS
         })).toEqual(stateAfter);
     });
 });
@@ -700,7 +700,7 @@ describe('TimelineWrapper initialization with year limits - test 1', () => {
         };
 
         expect(timelineReducer(stateBefore, {
-            type: actionNames.TIMELINE_INIT,
+            type: types.TIMELINE_INIT,
             year: 1424,
             minYear: 1422,
             maxYear: 1426,

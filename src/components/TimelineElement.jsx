@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import TIMELINE_SPACER from './timelineConstants';
+import TIMELINE_SPACER from '../timelineConstants';
 
 const timelineElementDefaultLabel = {
     position: 'absolute',

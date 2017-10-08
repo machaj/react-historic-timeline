@@ -1,4 +1,5 @@
-import * as actionNames from './timelineActionTypes';
+import createReducer from '../lib/createReducer';
+import * as types from '../actions/types';
 
 export const zoomLevels = [1, 5, 10, 20, 25, 50, 100];
 
@@ -43,16 +44,10 @@ function fillPartitions(partitionCount, selectedYear, zoomLevel, minYear, maxYea
     return partitions;
 }
 
-export function timelineReducer(state = {}, action = {}) {
-    let updatedYear = null;
-    let updatedZoom = null;
-    let minYear = null;
-    let maxYear = null;
-
-    switch (action.type) {
-    case actionNames.TIMELINE_INIT:
-        minYear = action.minYear !== undefined ? action.minYear : null;
-        maxYear = action.maxYear !== undefined ? action.maxYear : null;
+export const timelineReducer = createReducer({}, {
+    [types.TIMELINE_INIT](state, action) {
+        const minYear = action.minYear !== undefined ? action.minYear : null;
+        const maxYear = action.maxYear !== undefined ? action.maxYear : null;
 
         return {
             year: action.year,
@@ -62,20 +57,23 @@ export function timelineReducer(state = {}, action = {}) {
             partitionCount: action.partitionCount,
             partitions: fillPartitions(action.partitionCount, action.year, action.zoom, minYear, maxYear)
         };
-    case actionNames.TIMELINE_CHANGE_PARTITION:
+    },
+    [types.TIMELINE_CHANGE_PARTITION](state, action) {
         return {
             ...state,
             partitionCount: action.partitionCount,
             partitions: fillPartitions(action.partitionCount, state.year, state.zoom, state.minYear, state.maxYear)
         };
-    case actionNames.ERA_ENTERED:
+    },
+    [types.TIMELINE_ERA_ENTERED](state, action) {
         return {
             ...state,
             partitions: fillPartitions(state.partitionCount, action.year, state.zoom, state.minYear, state.maxYear),
             year: action.year
         };
-    case actionNames.ERA_MINUS:
-        updatedYear = state.year - (((state.partitions.length - 1) / 4) * zoomLevels[state.zoom]);
+    },
+    [types.TIMELINE_ERA_MINUS](state) {
+        let updatedYear = state.year - (((state.partitions.length - 1) / 4) * zoomLevels[state.zoom]);
 
         if (state.minYear !== null && updatedYear < state.minYear) {
             updatedYear = state.minYear;
@@ -86,8 +84,9 @@ export function timelineReducer(state = {}, action = {}) {
             partitions: fillPartitions(state.partitionCount, updatedYear, state.zoom, state.minYear, state.maxYear),
             year: updatedYear
         };
-    case actionNames.ERA_PLUS:
-        updatedYear = state.year + (((state.partitions.length - 1) / 4) * zoomLevels[state.zoom]);
+    },
+    [types.TIMELINE_ERA_PLUS](state) {
+        let updatedYear = state.year + (((state.partitions.length - 1) / 4) * zoomLevels[state.zoom]);
 
         if (state.maxYear !== null && updatedYear > state.maxYear) {
             updatedYear = state.maxYear;
@@ -98,21 +97,21 @@ export function timelineReducer(state = {}, action = {}) {
             partitions: fillPartitions(state.partitionCount, updatedYear, state.zoom, state.minYear, state.maxYear),
             year: updatedYear
         };
-    case actionNames.ERA_ZOOM_IN:
-        updatedZoom = checkZoom(state.zoom - 1);
+    },
+    [types.TIMELINE_ERA_ZOOM_IN](state) {
+        const updatedZoom = checkZoom(state.zoom - 1);
         return {
             ...state,
             partitions: fillPartitions(state.partitionCount, state.year, updatedZoom, state.minYear, state.maxYear),
             zoom: updatedZoom
         };
-    case actionNames.ERA_ZOOM_OUT:
-        updatedZoom = checkZoom(state.zoom + 1);
+    },
+    [types.TIMELINE_ERA_ZOOM_OUT](state) {
+        const updatedZoom = checkZoom(state.zoom + 1);
         return {
             ...state,
             partitions: fillPartitions(state.partitionCount, state.year, updatedZoom, state.minYear, state.maxYear),
             zoom: updatedZoom
         };
-    default:
-        return state;
     }
-}
+});
