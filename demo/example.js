@@ -13,7 +13,6 @@ const store = createStore(reducer, applyMiddleware(logger));
 ReactDOM.render(
     <Provider store={store}>
         <TimelineWrapper year={899} minYear={660} maxYear={1750} enableControl>
-            <TimelineBox2x/>
         </TimelineWrapper>
     </Provider>
     , document.getElementById("container")

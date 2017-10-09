@@ -1,8 +1,9 @@
 import * as types from './types';
 
-export function timelineInit() {
+export function timelineInit(initConfig) {
     return {
-        type: types.TIMELINE_INIT
+        type: types.TIMELINE_INIT,
+        ...initConfig
     };
 }
 

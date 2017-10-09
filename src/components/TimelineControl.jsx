@@ -31,10 +31,10 @@ const timelineZoomButtonsContainerStyle = {
 };
 
 class TimelineControl extends React.Component {
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
 
-        this.state = { value: null };
+        this.state = { value: props.year };
         this.timeoutId = null;
 
         this.onChange = (event) => {
@@ -47,10 +47,6 @@ class TimelineControl extends React.Component {
                 this.props.setYearCallback(parseInt(value, 10));
             }, 1000);
         };
-    }
-
-    componentWillMount() {
-        this.setState({ value: this.props.year });
     }
 
     componentWillReceiveProps(nextProps) {
